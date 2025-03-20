@@ -17,11 +17,13 @@ Projeto Sinistro
 
 ## 2. Nome completo dos integrantes
 
-* Jhemysson Moura Vieira - reponsavel por .Net, IOT e Cloud;
-* Robson Apparecido dos Santos - responsavel por  Database e Mobile; 
-* Talyta Botelho Perrotti - responsável por Java Advanced, QA e .Net;
+* Jhemysson Moura Vieira (RM552570) - reponsavel por .Net, IOT e Cloud;
+* Robson Apparecido dos Santos (RM 552858) - responsavel por  Database e Mobile; 
+* Talyta Botelho Perrotti (RM553739)- responsável por Java Advanced, QA e .Net;
 
   ## 4. Link do vídeo
+
+  https://youtu.be/5Nb5OE1LAnY
 
 
 ## 5. Lista de endpoint (documentação da API)
