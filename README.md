@@ -21,21 +21,21 @@ Projeto Sinistro
 * Robson Apparecido dos Santos (RM 552858) - responsavel por  Database e Mobile; 
 * Talyta Botelho Perrotti (RM553739)- responsável por Java Advanced, QA e .Net;
 
-  ## 4. Link do vídeo
+## 3. Link do vídeo
 
-  https://youtu.be/5Nb5OE1LAnY
+https://youtu.be/5Nb5OE1LAnY
 
 
-## 5. Lista de endpoint (documentação da API)
+## 4. Lista de endpoint (documentação da API)
 - [X]  {/pacientes}
 
-## 6. Exemplo:
+## 5. Exemplo:
 
 ![Image](https://github.com/user-attachments/assets/63713a88-78a6-4bb1-9a14-5376d1861952)
 
 ![Image](https://github.com/user-attachments/assets/f64f1d99-2265-434c-9d59-73db761384e7)
 
-## Colaboradores
+## 6. Colaboradores
 <div>
   <img loading="lazy" src="https://github.com/user-attachments/assets/8574ae05-d0c5-402d-8c1a-bfab17bdf955" width=115><br><sub>Talyta Perrotti</sub>
 
