@@ -29,6 +29,10 @@ Projeto Sinistro
 
 ## 6. Exemplo:
 
+![Image](https://github.com/user-attachments/assets/63713a88-78a6-4bb1-9a14-5376d1861952)
+
+![Image](https://github.com/user-attachments/assets/f64f1d99-2265-434c-9d59-73db761384e7)
+
 ## Colaboradores
 <div>
   <img loading="lazy" src="https://github.com/user-attachments/assets/8574ae05-d0c5-402d-8c1a-bfab17bdf955" width=115><br><sub>Talyta Perrotti</sub>
