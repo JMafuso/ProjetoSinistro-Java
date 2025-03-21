@@ -23,7 +23,7 @@ Projeto Sinistro
 
 ## 3. Link do vídeo
 
-https://youtu.be/5Nb5OE1LAnY
+https://youtu.be/zPJXud9ypM0
 
 
 ## 4. Lista de endpoint (documentação da API)
