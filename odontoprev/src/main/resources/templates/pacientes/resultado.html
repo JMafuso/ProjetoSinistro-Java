@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{texto.titulo}">Resultado do Diagnóstico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --cor-principal: #0066ff;
+            --cor-secundaria: #ffffff;
+            --cor-vermelho: #ff4444;
+            --sombra-suave: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transicao-padrao: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--cor-principal);
+            background: linear-gradient(135deg,
+                #e0f0ff 0%,
+                #b3d9ff 25%,
+                #80ccff 50%,
+                #4db8ff 75%,
+                #0066ff 100%);
+            background-size: 200% 200%;
+            animation: gradient 15s ease infinite;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header {
+            background: linear-gradient(90deg,
+                rgba(255, 255, 255, 0.95),
+                rgba(255, 255, 255, 0.9));
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .content-container {
+            margin-top: 80px;
+            padding: 2rem;
+            min-height: calc(100vh - 160px);
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(12px);
+            overflow-x: auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--cor-principal);
+            font-weight: bold;
+            transition: var(--transicao-padrao);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            transition: var(--transicao-padrao);
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .btn-salvar {
+            background-color: var(--cor-principal);
+            color: var(--cor-secundaria);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: var(--transicao-padrao);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                overflow-x: auto;
+            }
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div th:replace="fragments/header :: header"></div>
+</header>
+<main class="content-container">
+    <div class="page-title">
+        <h1 th:text="#{texto.titulo}">Resultado do Diagnóstico</h1>
+    </div>
+    <div class="form-container">
+        <h2>Sugestão de Diagnóstico</h2>
+        <p th:text="${diagnostico}">Diagnóstico gerado pela IA</p>
+        <div class="btn-container">
+            <a th:href="@{/pacientes}" class="btn-salvar" th:text="#{lista.botao.nova}">Voltar à Lista</a>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

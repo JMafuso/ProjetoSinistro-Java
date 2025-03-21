@@ -1,9 +1,11 @@
 package br.com.fiap.ja.odontoprev.service;
 
+import br.com.fiap.ja.odontoprev.config.RabbitMQConfig;
 import br.com.fiap.ja.odontoprev.dto.PacienteDTO;
 import br.com.fiap.ja.odontoprev.entity.Paciente;
 import br.com.fiap.ja.odontoprev.repository.PacienteRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -13,11 +15,13 @@ import java.util.UUID;
 @AllArgsConstructor
 public class PacienteService {
     private final PacienteRepository repository;
+    private final RabbitTemplate rabbitTemplate;
 
     public PacienteDTO salvar(PacienteDTO pacienteDTO) {
         Paciente paciente = toEntity(pacienteDTO);
         if (pacienteDTO.getUuid() == null) {
             paciente = repository.save(paciente);
+            rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.ROUTING_KEY, pacienteDTO);
         } else {
             Optional<Paciente> existente = repository.findById(pacienteDTO.getUuid());
             if (existente.isPresent()) {

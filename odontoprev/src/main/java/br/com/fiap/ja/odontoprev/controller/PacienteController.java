@@ -1,6 +1,7 @@
 package br.com.fiap.ja.odontoprev.controller;
 
 import br.com.fiap.ja.odontoprev.dto.PacienteDTO;
+import br.com.fiap.ja.odontoprev.service.AIService;
 import br.com.fiap.ja.odontoprev.service.PacienteService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class PacienteController {
     private final PacienteService pacienteService;
+    private final AIService aiService;
 
     @GetMapping
     public String listar(Model model) {
@@ -37,7 +39,13 @@ public class PacienteController {
             return "pacientes/formulario";
         }
         pacienteService.salvar(paciente);
-        return "redirect:/pacientes";
+        String diagnostico = aiService.sugerirDiagnostico(
+                paciente.getSintoma(),
+                paciente.getDoenca(),
+                paciente.getGravidade()
+        );
+        model.addAttribute("diagnostico", diagnostico);
+        return "pacientes/resultado";
     }
 
     @GetMapping("/editar/{uuid}")
