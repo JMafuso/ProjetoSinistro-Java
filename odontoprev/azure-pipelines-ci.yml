@@ -14,7 +14,7 @@ stages:
   - job: Build
     displayName: 'Build and Test'
     steps:
-    - task: Maven@3
+    - task: Maven@4
       inputs:
         mavenPomFile: 'odontoprev/pom.xml'
         goals: 'clean package'
