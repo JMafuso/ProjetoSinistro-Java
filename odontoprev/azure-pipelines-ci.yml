@@ -1,7 +1,5 @@
 # Maven package Java project Web App to Linux on Azure
 # Build your Java project and deploy it to Azure as a Linux web app
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
 - main
@@ -20,6 +18,9 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
+  # JDK version to match your pom.xml configuration
+  jdkVersion: '21'
+
 stages:
 - stage: Build
   displayName: BuildApp
@@ -36,12 +37,11 @@ stages:
         mavenPomFile: 'pom.xml'
         mavenOptions: '-Xmx3072m'
         javaHomeOption: 'JDKVersion'
-        jdkVersionOption: '1.17' 
+        jdkVersionOption: '$(jdkVersion)'
         jdkArchitectureOption: 'x64'
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'clean package'
-      workingDirectory: 'odontoprev'
 
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
@@ -50,7 +50,7 @@ stages:
         Contents: '**/target/*.?(war|jar)'
         TargetFolder: $(Build.ArtifactStagingDirectory)
 
-    - upload: $(Build.ArtifactStagingDirectory)
+    - publish: $(Build.ArtifactStagingDirectory)
       artifact: drop
 
 - stage: Deploy
