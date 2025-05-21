@@ -16,7 +16,7 @@ stages:
     steps:
     - task: Maven@4
       inputs:
-        mavenPomFile: 'odontoprev/pom.xml'
+        mavenPomFile: 'pom.xml'
         goals: 'clean package'
         options: '-DskipTests=false'
         javaHomeOption: 'JDKVersion'
