@@ -1,47 +1,55 @@
-# Projeto Sinistro_Java
+# Projeto OdontoPrev - CI/CD Pipeline
 
- <img src="https://img.shields.io/badge/status-desenvolvimento-green?style=for-the-badge">
+## Visão Geral
 
- ## Tecnologias
-<div>
-  <img src="https://img.shields.io/badge/Java-orange?style=flat&logo=java&logoColor-black">
-  <img loading="lazy" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" width="22" background-color="orange" alt="Java Logo">
-  <img src="https://img.shields.io/badge/Spring-Boot-blue?style=flat&logo=springboot&logoColor-black">
-   <img src="https://img.shields.io/badge/Thymeleaf-pink?style=flat&logo=thymeleaf&logoColor-black">
-  
-</div>
+Este projeto é uma aplicação Java Spring Boot para gerenciamento de Pacientes e Profissionais. Este repositório inclui a configuração das pipelines de Integração Contínua (CI) e Entrega Contínua (CD) utilizando Azure DevOps.
 
-## 1. Nome da Aplicação
+## Desenho da Pipeline CI/CD
 
-Projeto Sinistro
+A pipeline foi desenhada para garantir a qualidade e entrega contínua da aplicação, com as seguintes etapas:
 
-## 2. Nome completo dos integrantes
+### Pipeline de Integração Contínua (CI)
 
-* Jhemysson Moura Vieira (RM552570) - reponsavel por .Net, IOT e Cloud;
-* Robson Apparecido dos Santos (RM 552858) - responsavel por  Database e Mobile; 
-* Talyta Botelho Perrotti (RM553739)- responsável por Java Advanced, QA e .Net;
+1. **Disparo automático**: A pipeline é disparada automaticamente a cada push na branch `main`.
+2. **Build**: O código é compilado utilizando Maven, garantindo que o projeto está construído corretamente.
+3. **Testes**: São executados os testes automatizados para validar o comportamento da aplicação.
+4. **Publicação de artefatos**: O artefato gerado (arquivo `.jar`) é publicado para ser utilizado na etapa de deploy.
 
-## 3. Link do vídeo
+### Pipeline de Entrega Contínua (CD)
 
-https://youtu.be/zPJXud9ypM0
+1. **Disparo manual ou automático**: A pipeline pode ser disparada manualmente ou configurada para disparar após a conclusão da pipeline CI.
+2. **Download do artefato**: O artefato gerado na pipeline CI é baixado para o ambiente de deploy.
+3. **Deploy**: O artefato é implantado em um Azure App Service configurado para rodar aplicações Java.
+4. **Monitoramento**: Após o deploy, a aplicação pode ser monitorada utilizando ferramentas como Prometheus (configurado no projeto).
 
+## Configuração das Pipelines no Azure DevOps
 
-## 4. Lista de endpoint (documentação da API)
-- [X]  {/pacientes}
+- Os arquivos `azure-pipelines-ci.yml` e `azure-pipelines-cd.yml` definem as pipelines CI e CD, respectivamente.
+- Estes arquivos estão localizados na pasta `odontoprev` do projeto.
+- A pipeline CI está configurada para build, teste e publicação de artefatos.
+- A pipeline CD está configurada para deploy do artefato no Azure App Service.
+- É necessário configurar as variáveis `<YOUR_AZURE_SERVICE_CONNECTION>` e `<YOUR_APP_SERVICE_NAME>` no arquivo `azure-pipelines-cd.yml` para apontar para sua assinatura e aplicação no Azure.
 
-## 5. Exemplo:
+## Código Fonte e Scripts JSON
 
-![Image](https://github.com/user-attachments/assets/63713a88-78a6-4bb1-9a14-5376d1861952)
+- O código fonte da aplicação está na pasta `odontoprev/src`.
+- Os scripts JSON para operações CRUD das entidades Paciente e Profissional estão em:
+  - `odontoprev/src/main/resources/paciente-crud.json`
+  - `odontoprev/src/main/resources/profissional-crud.json`
+- Estes scripts podem ser utilizados para testar as APIs utilizando ferramentas como Postman.
 
-![Image](https://github.com/user-attachments/assets/f64f1d99-2265-434c-9d59-73db761384e7)
+## Como Executar
 
-## 6. Colaboradores
-<div>
-  <img loading="lazy" src="https://github.com/user-attachments/assets/8574ae05-d0c5-402d-8c1a-bfab17bdf955" width=115><br><sub>Talyta Perrotti</sub>
+1. Faça o push do código para o repositório GitHub conectado ao Azure DevOps.
+2. Crie as pipelines no Azure DevOps utilizando os arquivos YAML na pasta `odontoprev`.
+3. Execute a pipeline CI para build e testes.
+4. Execute a pipeline CD para deploy.
+5. Utilize os scripts JSON para testar as APIs.
+6. Consulte os logs das pipelines para monitorar a execução.
 
-  <img loading="lazy" src="https://github.com/user-attachments/assets/c62c7bb3-42ce-458d-a317-693cbe9fa743" width=115><br><sub>Robson dos Santos</sub>
+## Considerações Finais
 
-  <img loading="lazy" src="https://github.com/user-attachments/assets/82870c27-734c-45d8-b1a8-09bbe58aa994" width=115><br><sub>Jhemysson Moura Vieira</sub>
+Este setup garante uma entrega contínua eficiente, com validação automática do código e deploy rápido para o ambiente de produção.
 
-</div>
-
+---
+Este README foi criado para facilitar a reprodução e testes das pipelines e da aplicação.

@@ -1,0 +1,31 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  MAVEN_OPTS: '-Xmx3072m'
+
+stages:
+- stage: Build
+  displayName: 'Build Stage'
+  jobs:
+  - job: Build
+    displayName: 'Build and Test'
+    steps:
+    - task: Maven@3
+      inputs:
+        mavenPomFile: 'odontoprev/pom.xml'
+        goals: 'clean package'
+        options: '-DskipTests=false'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '1.21'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        mavenAuthenticateFeed: false
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(System.DefaultWorkingDirectory)/odontoprev/target'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
