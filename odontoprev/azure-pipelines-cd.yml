@@ -25,4 +25,4 @@ stages:
               azureSubscription: 'JMafuso'
               appType: 'webApp'
               appName: '<YOUR_APP_SERVICE_NAME>'
-              package: '$(Pipeline.Workspace)/drop/*.jar'
+              package: '$(Pipeline.Workspace)/drop/odontoprev-*.jar'
