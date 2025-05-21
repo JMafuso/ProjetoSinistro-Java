@@ -1,0 +1,36 @@
+{
+  "create": {
+    "name": "Create Paciente",
+    "method": "POST",
+    "url": "/pacientes",
+    "body": {
+      "nome": "John Doe",
+      "idade": 30,
+      "sintoma": "Dor de cabeça",
+      "doenca": "Gripe",
+      "gravidade": "Moderada"
+    }
+  },
+  "read": {
+    "name": "Get Paciente",
+    "method": "GET",
+    "url": "/pacientes/{uuid}"
+  },
+  "update": {
+    "name": "Update Paciente",
+    "method": "PUT",
+    "url": "/pacientes/{uuid}",
+    "body": {
+      "nome": "John Doe",
+      "idade": 31,
+      "sintoma": "Dor de cabeça",
+      "doenca": "Gripe",
+      "gravidade": "Leve"
+    }
+  },
+  "delete": {
+    "name": "Delete Paciente",
+    "method": "DELETE",
+    "url": "/pacientes/{uuid}"
+  }
+}

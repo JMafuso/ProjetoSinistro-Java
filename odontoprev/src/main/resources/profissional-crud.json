@@ -1,0 +1,32 @@
+{
+  "create": {
+    "name": "Create Profissional",
+    "method": "POST",
+    "url": "/profissional",
+    "body": {
+      "nome": "Dr. Smith",
+      "especialidade": "Dentista",
+      "registro": "123456"
+    }
+  },
+  "read": {
+    "name": "Get Profissional",
+    "method": "GET",
+    "url": "/profissional/{uuid}"
+  },
+  "update": {
+    "name": "Update Profissional",
+    "method": "PUT",
+    "url": "/profissional/{uuid}",
+    "body": {
+      "nome": "Dr. Smith",
+      "especialidade": "Ortodontista",
+      "registro": "123456"
+    }
+  },
+  "delete": {
+    "name": "Delete Profissional",
+    "method": "DELETE",
+    "url": "/profissional/{uuid}"
+  }
+}

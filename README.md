@@ -1,47 +1,63 @@
-# Projeto Sinistro_Java
+# Projeto OdontoPrev - CI/CD Pipeline
 
- <img src="https://img.shields.io/badge/status-desenvolvimento-green?style=for-the-badge">
+## Visão Geral
 
- ## Tecnologias
-<div>
-  <img src="https://img.shields.io/badge/Java-orange?style=flat&logo=java&logoColor-black">
-  <img loading="lazy" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" width="22" background-color="orange" alt="Java Logo">
-  <img src="https://img.shields.io/badge/Spring-Boot-blue?style=flat&logo=springboot&logoColor-black">
-   <img src="https://img.shields.io/badge/Thymeleaf-pink?style=flat&logo=thymeleaf&logoColor-black">
-  
-</div>
+Este projeto é uma aplicação Java Spring Boot para gerenciamento de Pacientes e Profissionais. Este repositório inclui a configuração das pipelines de Integração Contínua (CI) e Entrega Contínua (CD) utilizando Azure DevOps.
 
-## 1. Nome da Aplicação
+## Estrutura do Projeto
 
-Projeto Sinistro
+- Código fonte da aplicação está na pasta `odontoprev`.
+- Pipelines Azure DevOps:
+  - `azure-pipelines-ci.yml`: Pipeline de Integração Contínua (build, testes, empacotamento).
+  - `azure-pipelines-cd.yml`: Pipeline de Entrega Contínua (deploy para Azure App Service).
+- Scripts JSON para operações CRUD:
+  - `odontoprev/src/main/resources/paciente-crud.json`
+  - `odontoprev/src/main/resources/profissional-crud.json`
 
-## 2. Nome completo dos integrantes
+## Configuração das Pipelines no Azure DevOps
 
-* Jhemysson Moura Vieira (RM552570) - reponsavel por .Net, IOT e Cloud;
-* Robson Apparecido dos Santos (RM 552858) - responsavel por  Database e Mobile; 
-* Talyta Botelho Perrotti (RM553739)- responsável por Java Advanced, QA e .Net;
+### Pipeline CI
 
-## 3. Link do vídeo
+- Disparada automaticamente em push para a branch `main`.
+- Executa:
+  - Build do projeto com Maven.
+  - Execução dos testes.
+  - Publicação dos artefatos gerados.
 
-https://youtu.be/zPJXud9ypM0
+### Pipeline CD
 
+- Disparada manualmente ou por gatilho após CI.
+- Executa:
+  - Download dos artefatos da build.
+  - Deploy do artefato `.jar` para Azure App Service.
+- Requer configuração do serviço Azure no Azure DevOps (`azureSubscription` e `appName`).
 
-## 4. Lista de endpoint (documentação da API)
-- [X]  {/pacientes}
+## Como Executar
 
-## 5. Exemplo:
+1. Faça o push do código para o repositório GitHub.
+2. Configure o projeto no Azure DevOps e importe os arquivos `azure-pipelines-ci.yml` e `azure-pipelines-cd.yml`.
+3. Configure a conexão com o Azure App Service no Azure DevOps.
+4. Execute a pipeline CI para build e testes.
+5. Execute a pipeline CD para deploy.
 
-![Image](https://github.com/user-attachments/assets/63713a88-78a6-4bb1-9a14-5376d1861952)
+## Testes
 
-![Image](https://github.com/user-attachments/assets/f64f1d99-2265-434c-9d59-73db761384e7)
+- Os testes são executados automaticamente na pipeline CI.
+- Para executar localmente:
+  ```bash
+  cd odontoprev
+  ./mvnw test
+  ```
 
-## 6. Colaboradores
-<div>
-  <img loading="lazy" src="https://github.com/user-attachments/assets/8574ae05-d0c5-402d-8c1a-bfab17bdf955" width=115><br><sub>Talyta Perrotti</sub>
+## Scripts JSON para CRUD
 
-  <img loading="lazy" src="https://github.com/user-attachments/assets/c62c7bb3-42ce-458d-a317-693cbe9fa743" width=115><br><sub>Robson dos Santos</sub>
+- Os arquivos JSON em `src/main/resources` contêm exemplos de requisições para as operações CRUD das entidades Paciente e Profissional.
+- Utilize ferramentas como Postman para importar e testar as APIs.
 
-  <img loading="lazy" src="https://github.com/user-attachments/assets/82870c27-734c-45d8-b1a8-09bbe58aa994" width=115><br><sub>Jhemysson Moura Vieira</sub>
+## Observações
 
-</div>
+- Atualize os placeholders `<YOUR_AZURE_SERVICE_CONNECTION>` e `<YOUR_APP_SERVICE_NAME>` no arquivo `azure-pipelines-cd.yml` com suas configurações reais.
+- Certifique-se de que o Azure App Service esteja configurado para rodar aplicações Java.
 
+---
+Este README foi criado para facilitar a reprodução e testes das pipelines e da aplicação.
